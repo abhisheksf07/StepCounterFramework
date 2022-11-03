@@ -1,0 +1,16 @@
+PODS:
+  - StepCounterFramework (1.0.0)
+
+DEPENDENCIES:
+  - StepCounterFramework (from `../StepCounterFramework/`)
+
+EXTERNAL SOURCES:
+  StepCounterFramework:
+    :path: "../StepCounterFramework/"
+
+SPEC CHECKSUMS:
+  StepCounterFramework: fd761f9496bf8a4c2897d79c5859974994f933aa
+
+PODFILE CHECKSUM: 285fdb8b26d3e340053fb1c9adeb43401214eee0
+
+COCOAPODS: 1.11.3

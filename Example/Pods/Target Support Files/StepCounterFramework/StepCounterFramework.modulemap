@@ -1,0 +1,6 @@
+framework module StepCounterFramework {
+  umbrella header "StepCounterFramework-umbrella.h"
+
+  export *
+  module * { export * }
+}
