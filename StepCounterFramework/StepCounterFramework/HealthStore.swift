@@ -9,7 +9,7 @@ import Foundation
 import HealthKit
 import UIKit
 
-enum permissionGrantedStatus: String {
+public enum permissionGrantedStatus: String {
     case granted
     case denied
     case notDetermined
@@ -17,13 +17,13 @@ enum permissionGrantedStatus: String {
 
 public class HealthStore {
         
-    private var _healthStore: HKHealthStore?
-    private var _query:  HKStatisticsCollectionQuery?
-    private let _healthAppUrl = "x-apple-health://"
+    public var _healthStore: HKHealthStore?
+    public var _query:  HKStatisticsCollectionQuery?
+    public let _healthAppUrl = "x-apple-health://"
     
     public static let shared = HealthStore()
     
-    private init() {
+    public init() {
         // to make default constructor private
         if HKHealthStore.isHealthDataAvailable(){
             _healthStore = HKHealthStore()
@@ -32,7 +32,7 @@ public class HealthStore {
         }
     }
     
-    func openHealthApp() {
+    public func openHealthApp() {
         guard let url = URL(string: _healthAppUrl) else {
             return
         }
@@ -41,7 +41,7 @@ public class HealthStore {
         }
     }
     
-    func getAuthorisationStatus()-> permissionGrantedStatus {
+    public func getAuthorisationStatus()-> permissionGrantedStatus {
         let stepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
         
         let authorizationStatus = _healthStore?.authorizationStatus(for: stepCount)
@@ -54,7 +54,7 @@ public class HealthStore {
         }
     }
     
-    func requestAuthorisation(completion: @escaping(Bool)-> Void) {
+    public func requestAuthorisation(completion: @escaping(Bool)-> Void) {
         
         let sleep = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)!
         let energyBurned = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!
@@ -81,7 +81,7 @@ public class HealthStore {
         }
     }
     
-    func calculateSteps(completion: @escaping (HKStatisticsCollection?, Double?)->Void) {
+    public func calculateSteps(completion: @escaping (HKStatisticsCollection?, Double?)->Void) {
         var stepsCount = 0.0
         let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
 
