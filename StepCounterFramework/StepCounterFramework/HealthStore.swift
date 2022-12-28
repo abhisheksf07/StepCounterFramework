@@ -36,8 +36,10 @@ public class HealthStore {
         guard let url = URL(string: _healthAppUrl) else {
             return
         }
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:])
+        DispatchQueue.main.async {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:])
+            }
         }
     }
     
