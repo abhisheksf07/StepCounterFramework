@@ -90,7 +90,7 @@ public class HealthStore {
         let anchorDate = Date.mondayAt12AM()
         let daily = DateComponents(day: 1)
 
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date().adjust(for: .endOfDay), options: .strictStartDate)
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate)
 
         _query = HKStatisticsCollectionQuery(quantityType: stepType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: anchorDate, intervalComponents: daily)
 
@@ -98,12 +98,12 @@ public class HealthStore {
             query, statisticsCollection, error in
             
             
-            statisticsCollection?.enumerateStatistics(from: startDate ?? Date(), to: Date().adjust(for: .endOfDay) ?? Date()) { statstics, stop in
+            statisticsCollection?.enumerateStatistics(from: startDate ?? Date(), to: Date()) { statstics, stop in
                 
                 if let stepCountVal = statstics.sumQuantity()?.doubleValue(for: .count()){
                     stepsCount = stepCountVal
                 }
-                print("Countttttt: \(stepsCount)")
+                print("calculateSteps Count: \(stepsCount)")
             }
             
             completion(statisticsCollection, stepsCount)
@@ -136,7 +136,7 @@ public class HealthStore {
                 if let stepCountVal = statstics.sumQuantity()?.doubleValue(for: .count()){
                     stepsCount = stepCountVal
                 }
-                print("getSteps Countttttt: \(stepsCount)")
+                print("getSteps Count: \(stepsCount)")
             }
             
             completion(statisticsCollection, stepsCount)
