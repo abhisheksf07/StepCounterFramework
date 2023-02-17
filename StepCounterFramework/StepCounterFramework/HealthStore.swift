@@ -32,6 +32,7 @@ public class HealthStore {
         }
     }
     
+    @available(iOSApplicationExtension, unavailable)
     public func openHealthApp() {
         guard let url = URL(string: _healthAppUrl) else {
             return
